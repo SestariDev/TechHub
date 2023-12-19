@@ -1,8 +1,8 @@
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { CreateProjectsTable1702735959359 } from './migrations/1702735959359-CreateProjectsTable'
-import Project from "../../../TechHub/src/entitys/Project"
-import Category from "../../../TechHub/src/entitys/Categorys"
+import { CreateProjectsTable1702735959359 } from "./migrations/1702735959359-CreateProjectsTable"
+import Project from "../entitys/Project"
+import Category from "../entitys/Categorys"
 
 
 export const AppDataSource = new DataSource({
