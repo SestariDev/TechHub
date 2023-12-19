@@ -35,4 +35,18 @@ userRouter.delete('/:id', async (req: Request, res: Response): Promise<Response>
   }
 });
 
+userRouter.put('/:id', async (req: Request, res: Response): Promise<Response> => {
+  const projectId: number = parseInt(req.params.id, 10);
+  const newData: Partial<Iproject> = req.body;
+
+  try {
+    const updatedProject = await UserRepository.updateProject(projectId, newData);
+    return res.status(200).json(updatedProject);
+  } catch (error) {
+    console.error('Error updating project:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
+
 export default userRouter

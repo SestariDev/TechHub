@@ -37,4 +37,25 @@ const deleteProject = async (projectId: number): Promise<Iproject | undefined> =
   }
 };
 
-export default {getProjects, createProject, deleteProject}
+const updateProject = async (projectId: number, newData: Partial<Iproject>): Promise<Iproject | undefined> => {
+  try {
+    const projectToUpdate = await UseRepository.findOne({ where: { id: projectId } });
+
+    if (!projectToUpdate) {
+      throw new Error('Project not found');
+    }
+
+    // Atualiza as propriedades do projeto com os novos dados
+    UseRepository.merge(projectToUpdate, newData);
+
+    // Salva as alterações no banco de dados
+    const updatedProject = await UseRepository.save(projectToUpdate);
+
+    return updatedProject;
+  } catch (error) {
+    console.error('Error updating project:', error);
+    throw error;
+  }
+};
+
+export default {getProjects, createProject, deleteProject, updateProject}
