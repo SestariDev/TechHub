@@ -20,4 +20,21 @@ catch(error){
 }
 };
 
-export default {getProjects, createProject}
+const deleteProject = async (projectId: number): Promise<Iproject | undefined> => {
+  try {
+    const projectToDelete = await UseRepository.findOne({ where: { id: projectId } });
+
+    if (!projectToDelete) {
+      throw new Error('Project not found');
+    }
+
+    await UseRepository.remove(projectToDelete);
+
+    return projectToDelete;
+  } catch (error) {
+    console.error('Error deleting project:', error);
+    throw error;
+  }
+};
+
+export default {getProjects, createProject, deleteProject}

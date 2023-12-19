@@ -15,10 +15,22 @@ userRouter.get('/',async (resq: Request,resp: Response): Promise<Response> =>{
 userRouter.post('/', async (req: Request, res: Response): Promise<Response> => {
   const projectData: Partial<Iproject> = req.body;
   try {
-    console.log(req)
     const createdProject = await UserRepository.createProject(projectData);
     return res.status(201).json(createdProject);
   } catch (error) {
+    console.error('Error creating project:', error);
+    return res.status(500).send('Internal Server Error');
+  }
+});
+
+userRouter.delete('/:id', async (req: Request, res: Response): Promise<Response> => {
+  const projectId: number = parseInt(req.params.id, 10);
+
+  try {
+    const deletedProject = await UserRepository.deleteProject(projectId);
+    return res.status(200).json(deletedProject);
+  } catch (error) {
+    console.error('Error deleting project:', error);
     return res.status(500).send('Internal Server Error');
   }
 });
