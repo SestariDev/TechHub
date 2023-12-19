@@ -1,6 +1,6 @@
-import Project from "../../../TechHub/src/entitys/Project";
+import Project from "../entitys/Project"
 import { AppDataSource } from "../database/data-source";
-import Iproject from "../../../TechHub/src/interfaces/Iproject";
+import Iproject from "../interfaces/Iproject";
 
 const UseRepository = AppDataSource.getRepository(Project)
 

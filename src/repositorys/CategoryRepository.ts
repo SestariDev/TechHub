@@ -1,7 +1,7 @@
 
 import { AppDataSource } from "../database/data-source";
-import Category from "../../../TechHub/src/entitys/Categorys";
-import Icategory from "../../../TechHub/src/interfaces/Icategory";
+import Category from "../entitys/Categorys";
+import Icategory from "../interfaces/Icategory";
 
 const categoryRepository = AppDataSource.getRepository(Category)
 
